@@ -47,5 +47,5 @@ app.use("/characters", characters);
 
 // Starta servern på angiven port
 app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
+  console.log(`Example app listening on port http://localhost:${port} =)`);
 });
