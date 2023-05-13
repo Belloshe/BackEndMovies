@@ -12,7 +12,6 @@ Det här projektet innehåller ett enkelt REST API för att hantera karaktärer.
 http://localhost:3001/movies?apiKey=5
 
 ## API-slutpunkter
-
 ### Hämta alla karaktärer
 
 Metod: `GET`
@@ -27,13 +26,13 @@ URL: `/movies/:id`
 
 Metod: `POST`
 URL: `/movies`
-Body: `{ "name": "Nytt namn", "powers": ["Kraft 1", "Kraft 2"], "weaknesses": ["Svaghet"], "image": "ny_bild.png" }`
+Body: `{ "Title": "Nytt namn", "Year": "Årtal", "Released": "19 Aug 2020", "Genre": "Genre kategori"}`
 
 ### Uppdatera en befintlig karaktär baserat på ID
 
 Metod: `PUT`
 URL: `/movies/:id`
-Body: `{ "name": "Uppdaterat namn", "powers": ["Uppdaterad kraft"], "weaknesses": ["Uppdaterad svaghet"], "image": "uppdaterad_bild.png" }`
+Body: `{ "Title": "uppdaterad Nytt namn", "Year": "uppdatera Årtal", "Released": "uppdatera 19 Aug 2020", "Genre": "upp datera Genre kategori"}`
 
 ### Ta bort en karaktär baserat på ID
 
