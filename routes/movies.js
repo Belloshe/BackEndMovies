@@ -48,6 +48,7 @@ let nextId = 28234;
 // Lägg till ny karaktär
 router.post("/", (req, res) => {
   const movie = req.body.movie;
+  if(movie){
   const newMovie = {
     ...movie,
     imdbID: nextId,
@@ -56,6 +57,11 @@ router.post("/", (req, res) => {
   nextId++;
   db.push(newMovie);
   res.json(newMovie);
+}else{
+  return res
+  .status(404)
+  .json({ message: "Du behöver fylla i fälten" });
+}
 });
 
 // Uppdatera en karaktär baserat på ID
