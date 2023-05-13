@@ -26,13 +26,29 @@ URL: `/movies/:id`
 
 Metod: `POST`
 URL: `/movies`
-Body: `{ "Title": "Nytt namn", "Year": "Årtal", "Released": "19 Aug 2020", "Genre": "Genre kategori"}`
+Body:
+`{
+    "movie": {
+        "Title": "Nytt namn",
+        "Year": "Årtal",
+        "Released": "19 Aug 2020",
+        "Genre": "Genre kategori"
+    }
+}`
 
 ### Uppdatera en befintlig karaktär baserat på ID
 
 Metod: `PUT`
 URL: `/movies/:id`
-Body: `{ "Title": "uppdaterad Nytt namn", "Year": "uppdatera Årtal", "Released": "uppdatera 19 Aug 2020", "Genre": "upp datera Genre kategori"}`
+Body: 
+`{
+    "movie": {
+        "Title": "Nytt namn",
+        "Year": "Årtal",
+        "Released": "19 Aug 2020",
+        "Genre": "Genre kategori"
+    }
+}`
 
 ### Ta bort en karaktär baserat på ID
 
