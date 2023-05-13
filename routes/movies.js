@@ -13,15 +13,13 @@ router.get("/", (req, res) => {
 // Hämta en specifik karaktär baserat på ID
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  const numberId = parseInt(id);
-  const movie = db.find((item) => item.id === numberId);
-
+  // const numberId = parseInt(id);
+  const movie = db.find((item) => item.imdbID === id);
   if (!movie) {
     return res
       .status(404)
       .json({ message: "Ingen karaktär med det idt kunde hittas!" });
   }
-
   res.json(movie);
 });
 
