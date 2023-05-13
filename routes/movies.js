@@ -3,26 +3,26 @@ const router = express.Router();
 const mockData = require("../mockData");
 
 // Ladda initialdata
-let characters = mockData;
+let db = mockData;
 
 // Hämta alla karaktärer
 router.get("/", (req, res) => {
-  res.json(characters);
+  res.json(db);
 });
 
 // Hämta en specifik karaktär baserat på ID
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   const numberId = parseInt(id);
-  const character = characters.find((char) => char.id === numberId);
+  const movie = db.find((item) => item.id === numberId);
 
-  if (!character) {
+  if (!movie) {
     return res
       .status(404)
       .json({ message: "Ingen karaktär med det idt kunde hittas!" });
   }
 
-  res.json(character);
+  res.json(movie);
 });
 
 // Ta bort en karaktär baserat på ID
@@ -30,15 +30,15 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
   const numberId = parseInt(id);
 
-  const character = characters.find((char) => char.id === numberId);
+  const movie = db.find((item) => item.id === numberId);
 
-  if (!character) {
+  if (!movie) {
     return res
       .status(404)
       .json({ message: "Ingen karaktär med det idt kunde hittas!" });
   }
-  const newData = characters.filter((char) => char.id !== numberId);
-  characters = newData;
+  const newData = db.filter((item) => item.id !== numberId);
+  db = newData;
 
   res.json({ message: "Karaktären har blivit borttagen!" });
 });
@@ -48,25 +48,25 @@ let nextId = 28234;
 
 // Lägg till ny karaktär
 router.post("/", (req, res) => {
-  const character = req.body.character;
-  const newCharacter = {
-    ...character,
+  const movie = req.body.movie;
+  const newMovie = {
+    ...movie,
     id: nextId,
   };
 
   nextId++;
 
-  characters.push(newCharacter);
-  res.json(newCharacter);
+  db.push(newMovie);
+  res.json(newMovie);
 });
 
 // Uppdatera en karaktär baserat på ID
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   const numberId = parseInt(id);
-  const character = req.body.character;
+  const movie = req.body.movie;
 
-  const index = characters.findIndex((char) => char.id === numberId);
+  const index = db.findIndex((item) => item.id === numberId);
 
   if (index === -1) {
     return res
@@ -74,10 +74,10 @@ router.put("/:id", (req, res) => {
       .json({ message: "Inget id matchar någon befintlig karaktär" });
   }
 
-  const updatedCharacter = { ...characters[index], ...character };
-  characters[index] = updatedCharacter;
+  const updatedMovie = { ...db[index], ...movie };
+  db[index] = updatedMovie;
 
-  res.json(updatedCharacter);
+  res.json(updatedMovie);
 });
 
 module.exports = router;

@@ -8,34 +8,37 @@ Det här projektet innehåller ett enkelt REST API för att hantera karaktärer.
 2. Kör `npm install` för att installera projektets beroenden.
 3. Kör `npm run dev` för att starta servern.
 
+## API-Key
+http://localhost:3001/movies?apiKey=5
+
 ## API-slutpunkter
 
 ### Hämta alla karaktärer
 
 Metod: `GET`
-URL: `/characters`
+URL: `/movies`
 
 ### Hämta en specifik karaktär baserat på ID
 
 Metod: `GET`
-URL: `/characters/:id`
+URL: `/movies/:id`
 
 ### Skapa en ny karaktär
 
 Metod: `POST`
-URL: `/characters`
+URL: `/movies`
 Body: `{ "name": "Nytt namn", "powers": ["Kraft 1", "Kraft 2"], "weaknesses": ["Svaghet"], "image": "ny_bild.png" }`
 
 ### Uppdatera en befintlig karaktär baserat på ID
 
 Metod: `PUT`
-URL: `/characters/:id`
+URL: `/movies/:id`
 Body: `{ "name": "Uppdaterat namn", "powers": ["Uppdaterad kraft"], "weaknesses": ["Uppdaterad svaghet"], "image": "uppdaterad_bild.png" }`
 
 ### Ta bort en karaktär baserat på ID
 
 Metod: `DELETE`
-URL: `/characters/:id`
+URL: `/movies/:id`
 
 ## Använda API:et med Postman
 

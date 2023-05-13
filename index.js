@@ -1,5 +1,5 @@
 const express = require("express");
-const characters = require("./routes/characters");
+const movies = require("./routes/movies");
 const cors = require("cors");
 
 const app = express();
@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/characters", characters);
+app.use("/movies", movies);
 
 // Starta servern på angiven port
 app.listen(port, () => {
