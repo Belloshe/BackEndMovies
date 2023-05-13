@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const id = req.params.id;
   const numberId = parseID(id);
-  
+
   const movie = db.find((item) => item.imdbID === numberId);
   if (!movie) {
     return res
@@ -34,12 +34,12 @@ router.delete("/:id", (req, res) => {
   if (!movie) {
     return res
       .status(404)
-      .json({ message: "Ingen karaktär med det idt kunde hittas!" });
+      .json({ message: "Ingen film med det idt kunde hittas!" });
   }
   const newData = db.filter((item) => item.imdbID !== numberId);
   db = newData;
 
-  res.json({ message: "Karaktären har blivit borttagen!" });
+  res.json({ message: "Filmen har blivit borttagen!" });
 });
 
 // Skapa ett nytt unikt ID för nya karaktärer
@@ -73,7 +73,7 @@ router.put("/:id", (req, res) => {
   if (index === -1) {
     return res
       .status(404)
-      .json({ message: "Inget id matchar någon befintlig karaktär" });
+      .json({ message: "Inget id matchar någon befintlig film" });
   }
 
   const updatedMovie = { ...db[index], ...movie };
@@ -83,19 +83,14 @@ router.put("/:id", (req, res) => {
 });
 
 function parseID(input) {
-  // Check if the input string contains only letters
-  if (/^[a-zA-Z]+$/.test(input)) {
-    return input;
-  }
-
-  // Check if the input string contains only numbers
+  // If input contains only numbers parseInt
   if (/^\d+$/.test(input)) {
     return parseInt(input);
+  } else {
+  // Else if the input string contains both letters and numbers return the input string as is
+    return input;
   }
-
-  // If the input string contains both letters and numbers, or if it contains
-  // any other characters, return the input string as is
-  return input;
+//imdbID tt1293192
 }
 
 module.exports = router;
