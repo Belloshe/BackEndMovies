@@ -13,12 +13,13 @@ router.get("/", (req, res) => {
 // Hämta en specifik karaktär baserat på ID
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-  // const numberId = parseInt(id);
-  const movie = db.find((item) => item.imdbID === id);
+  const numberId = parseID(id);
+  
+  const movie = db.find((item) => item.imdbID === numberId);
   if (!movie) {
     return res
       .status(404)
-      .json({ message: "Ingen karaktär med det idt kunde hittas!" });
+      .json({ message: "Ingen film med det id:t kunde hittas!" });
   }
   res.json(movie);
 });
@@ -26,16 +27,16 @@ router.get("/:id", (req, res) => {
 // Ta bort en karaktär baserat på ID
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
-  const numberId = parseInt(id);
+  const numberId = parseID(id);
 
-  const movie = db.find((item) => item.id === numberId);
+  const movie = db.find((item) => item.imdbID === numberId);
 
   if (!movie) {
     return res
       .status(404)
       .json({ message: "Ingen karaktär med det idt kunde hittas!" });
   }
-  const newData = db.filter((item) => item.id !== numberId);
+  const newData = db.filter((item) => item.imdbID !== numberId);
   db = newData;
 
   res.json({ message: "Karaktären har blivit borttagen!" });
@@ -49,11 +50,10 @@ router.post("/", (req, res) => {
   const movie = req.body.movie;
   const newMovie = {
     ...movie,
-    id: nextId,
+    imdbID: nextId,
   };
 
   nextId++;
-
   db.push(newMovie);
   res.json(newMovie);
 });
@@ -61,10 +61,14 @@ router.post("/", (req, res) => {
 // Uppdatera en karaktär baserat på ID
 router.put("/:id", (req, res) => {
   const id = req.params.id;
-  const numberId = parseInt(id);
-  const movie = req.body.movie;
+  const numberId = parseID(id);
 
-  const index = db.findIndex((item) => item.id === numberId);
+  const movie = req.body.movie;
+  console.log(id);
+  console.log(movie);
+
+  const index = db.findIndex((item) => item.imdbID === numberId);
+  console.log(index);
 
   if (index === -1) {
     return res
@@ -77,5 +81,21 @@ router.put("/:id", (req, res) => {
 
   res.json(updatedMovie);
 });
+
+function parseID(input) {
+  // Check if the input string contains only letters
+  if (/^[a-zA-Z]+$/.test(input)) {
+    return input;
+  }
+
+  // Check if the input string contains only numbers
+  if (/^\d+$/.test(input)) {
+    return parseInt(input);
+  }
+
+  // If the input string contains both letters and numbers, or if it contains
+  // any other characters, return the input string as is
+  return input;
+}
 
 module.exports = router;
