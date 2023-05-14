@@ -89,3 +89,4 @@ och sedan fyll i bodyn med ett json objekt ett exempel har du nedan. (du klickar
 En lyckad post kommer att retunera json objektet du skickat in och generera ett id, 
 om du inte skickar in en body kommer ett meddelande som påminner dig att fylla i fältet.
 
+![image](https://github.com/Belloshe/BackEndMovies/assets/117655908/aa0cf094-0eb4-4596-8291-742f82570f4e)
