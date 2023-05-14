@@ -22,8 +22,8 @@ URL: `/movies`
 
 Metod: `GET`
 URL: `/movies/:id`
-# Success: retunerar en film objekt
-# Error: Inget id matchar någon befintlig film
+Success: retunerar en film objekt
+Error: Inget id matchar någon befintlig film
 
 ### Skapa en ny film
 
@@ -38,8 +38,8 @@ Body:
         "Genre": "Genre kategori"
     }
 }`
-# Success: Retunerar film objektet du skrivit in + Generat ID
-# Error: Fyll i fälten (om du missat att skicka in body)
+Success: Retunerar film objektet du skrivit in + Generat ID
+Error: Fyll i fälten (om du missat att skicka in body)
 
 ### Uppdatera en befintlig film baserat på ID
 
@@ -54,15 +54,15 @@ Body:
         "Genre": "uppdatera genre kategori"
     }
 }`
-# Success: retunerar nya objektet 
-# Error: Inget id matchar någon befintlig film
+Success: retunerar nya objektet 
+Error: Inget id matchar någon befintlig film
 
 ### Ta bort en film baserat på ID
 Metod: `DELETE`
 URL: `/movies/:id`
 
-# Success: message: "Filmen har blivit borttagen!"
-# Error: Inget id matchar någon befintlig film
+Success: message: "Filmen har blivit borttagen!"
+Error: Inget id matchar någon befintlig film
 
 ## Använda API:et med Postman
 
