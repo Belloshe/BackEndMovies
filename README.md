@@ -9,7 +9,8 @@ Det här projektet innehåller ett enkelt REST API för att hantera filmer. Det 
 3. Kör `npm run dev` för att starta servern.
 
 ## API-Key
-http://localhost:3001/movies?apiKey=5
+?apiKey=5 
+(Se exempel längst ner hur man använder det)
 
 ## API-slutpunkter
 ### Hämta alla filmer
@@ -21,6 +22,8 @@ URL: `/movies`
 
 Metod: `GET`
 URL: `/movies/:id`
+# Success: retunerar en film objekt
+# Error: Inget id matchar någon befintlig film
 
 ### Skapa en ny film
 
@@ -29,12 +32,14 @@ URL: `/movies`
 Body:
 `{
     "movie": {
-        "Title": "Nytt namn",
+        "Title": "Film titel",
         "Year": "Årtal",
         "Released": "19 Aug 2020",
         "Genre": "Genre kategori"
     }
 }`
+# Success: Retunerar film objektet du skrivit in + Generat ID
+# Error: Fyll i fälten (om du missat att skicka in body)
 
 ### Uppdatera en befintlig film baserat på ID
 
@@ -43,17 +48,21 @@ URL: `/movies/:id`
 Body: 
 `{
     "movie": {
-        "Title": "Nytt namn",
-        "Year": "Årtal",
-        "Released": "19 Aug 2020",
-        "Genre": "Genre kategori"
+        "Title": "Uppdatera film titel",
+        "Year": "Uppdatera årtal",
+        "Released": "uppdatera 19 Aug 2020",
+        "Genre": "uppdatera genre kategori"
     }
 }`
+# Success: retunerar nya objektet 
+# Error: Inget id matchar någon befintlig film
 
 ### Ta bort en film baserat på ID
-
 Metod: `DELETE`
 URL: `/movies/:id`
+
+# Success: message: "Filmen har blivit borttagen!"
+# Error: Inget id matchar någon befintlig film
 
 ## Använda API:et med Postman
 
@@ -77,6 +86,6 @@ och sedan fyll i bodyn med ett json objekt ett exempel har du nedan. (du klickar
     }
 }
 
-## Förväntingar & Svar
-En lyckad post kommer att retunera json objektet du skickat in och generera ett id, om du inte skickar in en body kommer ett meddelande som påminner dig att fylla i fältet.
+En lyckad post kommer att retunera json objektet du skickat in och generera ett id, 
+om du inte skickar in en body kommer ett meddelande som påminner dig att fylla i fältet.
 
